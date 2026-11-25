@@ -1,0 +1,22 @@
+package dev.moonclient;
+
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import org.lwjgl.glfw.GLFW;
+
+public class MoonClient implements ClientModInitializer {
+    public static KeyBinding OPEN_MENU;
+
+    @Override
+    public void onInitializeClient() {
+        MoonConfig.load();
+        OPEN_MENU = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            "key.moonclient.open_menu", InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_RIGHT_SHIFT, "category.moonclient"
+        ));
+        MoonHud.init();
+        MoonSkinSettings.init();
+    }
+}
