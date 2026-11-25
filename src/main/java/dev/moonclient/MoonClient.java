@@ -1,3 +1,4 @@
+
 package dev.moonclient;
 
 import net.fabricmc.api.ClientModInitializer;
@@ -12,10 +13,16 @@ public class MoonClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         MoonConfig.load();
-        OPEN_MENU = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-            "key.moonclient.open_menu", InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_RIGHT_SHIFT, "category.moonclient"
-        ));
+
+        OPEN_MENU = KeyBindingHelper.registerKeyBinding(
+            new KeyBinding(
+                "key.moonclient.open_menu",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_RIGHT_SHIFT,
+                KeyBinding.Category.MISC
+            )
+        );
+
         MoonHud.init();
         MoonSkinSettings.init();
     }
